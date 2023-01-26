@@ -1,8 +1,9 @@
-resource "aws_subnet" "public_subnet" {
+resource "aws_subnet" "subnets" {
+  count = length(var.subnet_cidr_block)
   vpc_id     = aws_vpc.main.id
-  cidr_block = var.public_cidr_block
+  cidr_block = element(var.subnet_cidr_block, count.index )
 
   tags = {
-    Name = "${var.env}-subnet"
+    Name = "${var.env}-subnet-${count.index}"
   }
 }
