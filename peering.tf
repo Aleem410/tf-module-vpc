@@ -5,3 +5,7 @@ resource "aws_vpc_peering_connection" "vpc_peering" {
 #  default_vpc_cidr_block  = var.default_vpc_cidr_block
 #  default_route_table = var.default_route_table
 }
+
+output "vpc_peering-_id" {
+  value = aws_vpc_peering_connection.vpc_peering.id
+}
