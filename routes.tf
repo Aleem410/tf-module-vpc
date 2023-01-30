@@ -38,6 +38,7 @@ resource "aws_route" "internet_route_in_public_route_table" {
   gateway_id                = aws_internet_gateway.igw.id
 }
 resource "aws_route" "internet_route_in_private_route_table" {
-  route_table_id            = aws_route_table.private.id
-  destination_cidr_block    = "0.0.0.0/0"
-  nat_gateway_id            = aws_nat_gateway.natgw.id
+  route_table_id         = aws_route_table.private.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.natgw.id
+}
