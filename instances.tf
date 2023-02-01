@@ -9,6 +9,7 @@ resource "aws_instance" "app" {
   vpc_security_group_ids = aws_security_group.allow_tls.id
   subnet_id = aws_subnet.app_subnets.id
 }
+
 resource "aws_instance" "db" {
   ami  =  "ami-0a017d8ceb274537d"
   vpc_security_group_ids = aws_security_group.allow_tls.id
