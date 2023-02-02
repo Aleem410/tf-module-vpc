@@ -1,6 +1,29 @@
-#resource "aws_network_acl" "main" {
-#  vpc_id = aws_vpc.main.id
-#
+resource "aws_network_acl" "app" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "app"
+  }
+}
+resource "aws_network_acl_association" "app" {
+  count = length(aws_subnet.app_subnets.*.id)
+  network_acl_id = aws_network_acl.app.id
+  subnet_id      = element(aws_subnet.app_subnets.*.id, count.index)
+}
+
+resource "aws_network_acl" "db" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = "db"
+  }
+}
+resource "aws_network_acl_association" "db" {
+  count = length(aws_subnet.db_subnets.*.id)
+  network_acl_id = aws_network_acl.db.id
+  subnet_id      = element(aws_subnet.db_subnets.*.id, count.index)
+}
+
 #  egress {
 #    protocol   = "-1"
 #    rule_no    = 100
@@ -18,13 +41,3 @@
 #    from_port  = 22
 #    to_port    = 22
 #  }
-#
-#  tags = {
-#    Name = "main"
-#  }
-#}
-#
-#resource "aws_network_acl_association" "main" {
-#  network_acl_id = aws_network_acl.main.id
-#  subnet_id      = aws_subnet.db_subnets.id
-#}
