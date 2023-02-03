@@ -8,3 +8,4 @@ output "app_subnet_ids" {
 output "app_subnets_cidr" {
   value = aws_subnet.app_subnets.*.cidr_block
 }
+
