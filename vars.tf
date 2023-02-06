@@ -7,3 +7,4 @@ variable "public_subnet_cidr_block" {}
 variable "app_subnet_cidr_block" {}
 variable "db_subnet_cidr_block" {}
 variable "vpc_cidr_block" {}
+variable "workstation_ip" {}
